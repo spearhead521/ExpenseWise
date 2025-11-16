@@ -21,8 +21,8 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar-1');
   const [user, setUser] = useState<User>({
-    name: 'shadcn',
-    email: 'm@example.com',
+    name: '',
+    email: '',
     avatar: userAvatar?.imageUrl || '',
     isPro: false,
   });

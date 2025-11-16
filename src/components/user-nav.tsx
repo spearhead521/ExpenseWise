@@ -16,6 +16,13 @@ import { useUser } from '@/context/user-context';
 
 export function UserNav() {
   const { user } = useUser();
+  const getInitials = (name: string) => {
+    if (!name) return '';
+    return name
+      .split(' ')
+      .map((n) => n[0])
+      .join('');
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -23,10 +30,7 @@ export function UserNav() {
           <Avatar className="h-9 w-9">
             <AvatarImage src={user.avatar} alt="User avatar" />
             <AvatarFallback>
-              {user.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
+              {getInitials(user.name)}
             </AvatarFallback>
           </Avatar>
         </Button>

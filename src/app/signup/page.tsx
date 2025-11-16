@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,8 +12,22 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/icons';
+import { useState } from 'react';
+import { useUser } from '@/context/user-context';
+import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUser, user } = useUser();
+  const router = useRouter();
+
+  const handleSignup = () => {
+    setUser({ ...user, name, email });
+    router.push('/dashboard');
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="mx-auto w-full max-w-sm">
@@ -25,8 +41,14 @@ export default function SignupPage() {
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="first-name">Full name</Label>
-              <Input id="first-name" placeholder="Max" required />
+              <Label htmlFor="full-name">Full name</Label>
+              <Input
+                id="full-name"
+                placeholder="Max Robinson"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
 
             <div className="grid gap-2">
@@ -36,14 +58,21 @@ export default function SignupPage() {
                 type="email"
                 placeholder="m@example.com"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" />
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <Button type="submit" className="w-full" asChild>
-              <Link href="/dashboard">Create an account</Link>
+            <Button onClick={handleSignup} type="submit" className="w-full">
+              Create an account
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

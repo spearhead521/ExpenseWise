@@ -32,9 +32,15 @@ export default function SettingsPage() {
   const [name, setName] = React.useState(user.name);
   const [email, setEmail] = React.useState(user.email);
   const [avatarSrc, setAvatarSrc] = React.useState(user.avatar);
+  
+  React.useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+    setAvatarSrc(user.avatar);
+  }, [user]);
 
   const handleProfileUpdate = () => {
-    setUser({ name, email, avatar: avatarSrc });
+    setUser({ ...user, name, email, avatar: avatarSrc });
     toast({
       title: 'Profile Updated',
       description: 'Your personal information has been successfully updated.',
@@ -50,6 +56,14 @@ export default function SettingsPage() {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const getInitials = (name: string) => {
+    if (!name) return '';
+    return name
+      .split(' ')
+      .map((n) => n[0])
+      .join('');
   };
 
   return (
@@ -72,10 +86,7 @@ export default function SettingsPage() {
                 <Avatar className="h-20 w-20">
                   <AvatarImage src={avatarSrc} alt="User avatar" />
                   <AvatarFallback>
-                    {name
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
+                    {getInitials(name)}
                   </AvatarFallback>
                 </Avatar>
                 <Button
@@ -144,7 +155,7 @@ export default function SettingsPage() {
               <Select defaultValue="en">
                 <SelectTrigger>
                   <SelectValue placeholder="Select a language" />
-                </SelectTrigger>
+                </Trigger>
                 <SelectContent>
                   <SelectItem value="en">English</SelectItem>
                   <SelectItem value="hi">Hindi</SelectItem>
