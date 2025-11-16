@@ -1,3 +1,5 @@
+'use client';
+
 import BudgetProgress from '@/components/dashboard/budget-progress';
 import { Button } from '@/components/ui/button';
 import {
@@ -7,15 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { MOCK_CATEGORIES } from '@/lib/data';
 import { PlusCircle } from 'lucide-react';
 
-const categoryBudgets = [
-  { category: 'Food', budget: 15000, spent: 10250 },
-  { category: 'Shopping', budget: 10000, spent: 11500 },
-  { category: 'Transport', budget: 5000, spent: 3500 },
-  { category: 'Entertainment', budget: 5000, spent: 4000 },
-];
+const categoryBudgets: { category: string; budget: number; spent: number }[] = [];
 
 export default function BudgetsPage() {
   return (
