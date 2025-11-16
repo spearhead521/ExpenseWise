@@ -1,5 +1,5 @@
 'use client';
-import { DollarSign, CreditCard, Activity } from 'lucide-react';
+import { CreditCard, Activity } from 'lucide-react';
 import SummaryCard from '@/components/dashboard/summary-card';
 import BudgetProgress from '@/components/dashboard/budget-progress';
 import CategoryChart from '@/components/dashboard/category-chart';
