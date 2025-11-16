@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -38,6 +40,7 @@ export default function LoginPage() {
                 <Label htmlFor="password">Password</Label>
                 <Link
                   href="#"
+                  onClick={(e) => e.preventDefault()}
                   className="ml-auto inline-block text-sm underline"
                 >
                   Forgot your password?
@@ -48,7 +51,7 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" asChild>
               <Link href="/dashboard">Login</Link>
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={() => alert('Google Login coming soon!')}>
               Login with Google
             </Button>
           </div>
