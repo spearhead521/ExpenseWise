@@ -32,18 +32,9 @@ export function MainNav({ isMobile = false }: MainNavProps) {
     <nav
       className={cn(
         'grid items-start gap-2 px-2 text-sm font-medium lg:px-4',
-        isMobile && 'gap-4 text-base'
+        isMobile && 'gap-4 text-base p-4'
       )}
     >
-      {isMobile && (
-        <Link
-          href="/dashboard"
-          className="mb-4 flex items-center gap-2 text-lg font-semibold"
-        >
-          <Icons.logo className="h-6 w-6" />
-          <span>ExpenseWise</span>
-        </Link>
-      )}
       {navItems.map(({ href, icon: Icon, label }) => (
         <Link
           key={label}

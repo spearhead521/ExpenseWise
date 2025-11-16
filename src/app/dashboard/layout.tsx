@@ -31,6 +31,7 @@ import { MainNav } from '@/components/main-nav';
 import { UserNav } from '@/components/user-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Icons } from '@/components/icons';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function DashboardLayout({
   children,
@@ -51,9 +52,9 @@ export default function DashboardLayout({
               <span className="sr-only">Toggle notifications</span>
             </Button>
           </div>
-          <div className="flex-1">
+          <ScrollArea className="flex-1">
             <MainNav />
-          </div>
+          </ScrollArea>
           <div className="mt-auto p-4">
             <Card>
               <CardHeader className="p-2 pt-0 md:p-4">
@@ -85,9 +86,17 @@ export default function DashboardLayout({
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col">
-              <MainNav isMobile={true} />
-              <div className="mt-auto">
+            <SheetContent side="left" className="flex flex-col p-0">
+              <div className="flex h-14 items-center border-b px-4">
+                <Link href="/" className="flex items-center gap-2 font-semibold">
+                  <Icons.logo className="h-6 w-6" />
+                  <span className="">ExpenseWise</span>
+                </Link>
+              </div>
+              <ScrollArea className="flex-1">
+                <MainNav isMobile={true} />
+              </ScrollArea>
+              <div className="mt-auto p-4 border-t">
                 <Card>
                   <CardHeader>
                     <CardTitle>Upgrade to Pro</CardTitle>
