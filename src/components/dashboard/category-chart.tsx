@@ -49,7 +49,7 @@ export default function CategoryChart() {
         <CardTitle>Category Spending</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[300px]"
@@ -63,7 +63,9 @@ export default function CategoryChart() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-         <ChartLegend content={<ChartLegendContent nameKey="name" />} className="flex-wrap" />
+        <ChartContainer config={chartConfig} className='w-full'>
+          <ChartLegend content={<ChartLegendContent nameKey="name" />} className="flex-wrap" />
+        </ChartContainer>
       </CardFooter>
     </Card>
   );
