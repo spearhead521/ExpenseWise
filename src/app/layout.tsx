@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { UserProvider } from '@/context/user-context';
 import { TransactionProvider } from '@/context/transaction-context';
+import { BudgetProvider } from '@/context/budget-context';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -36,7 +37,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <UserProvider>
-            <TransactionProvider>{children}</TransactionProvider>
+            <TransactionProvider>
+              <BudgetProvider>{children}</BudgetProvider>
+            </TransactionProvider>
             <Toaster />
           </UserProvider>
         </ThemeProvider>
