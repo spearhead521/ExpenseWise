@@ -1,4 +1,6 @@
-import { DollarSign, CreditCard, Activity, Users } from 'lucide-react';
+'use client';
+
+import { DollarSign, CreditCard, Activity } from 'lucide-react';
 import SummaryCard from '@/components/dashboard/summary-card';
 import BudgetProgress from '@/components/dashboard/budget-progress';
 import CategoryChart from '@/components/dashboard/category-chart';
@@ -19,19 +21,19 @@ export default function DashboardPage() {
     {
       title: 'Total Income',
       value: totalIncome,
-      icon: DollarSign,
+      icon: 'DollarSign',
       isCurrency: true,
     },
     {
       title: 'Total Expenses',
       value: totalExpenses,
-      icon: CreditCard,
+      icon: 'CreditCard',
       isCurrency: true,
     },
     {
       title: 'Balance',
       value: balance,
-      icon: Activity,
+      icon: 'Activity',
       isCurrency: true,
     },
   ];

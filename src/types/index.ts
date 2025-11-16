@@ -19,6 +19,6 @@ export type Category = {
 export type SummaryCardData = {
   title: string;
   value: number;
-  icon: React.ElementType;
+  icon: string;
   isCurrency?: boolean;
 };
