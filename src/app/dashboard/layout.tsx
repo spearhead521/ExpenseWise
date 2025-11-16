@@ -23,7 +23,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { user, upgradeToPro } = useUser();
+  const { user } = useUser();
   return (
     <div className="grid h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:flex md:flex-col">
@@ -51,15 +51,15 @@ export default function DashboardLayout({
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-                <Button size="sm" className="w-full" onClick={upgradeToPro}>
-                  Upgrade
+                <Button size="sm" className="w-full" asChild>
+                  <Link href="/dashboard/upgrade">Upgrade</Link>
                 </Button>
               </CardContent>
             </Card>
           </div>
         )}
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col overflow-hidden">
         <header className="flex h-14 shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <Sheet>
             <SheetTrigger asChild>
@@ -96,12 +96,8 @@ export default function DashboardLayout({
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Button
-                        size="sm"
-                        className="w-full"
-                        onClick={upgradeToPro}
-                      >
-                        Upgrade
+                      <Button size="sm" className="w-full" asChild>
+                        <Link href="/dashboard/upgrade">Upgrade</Link>
                       </Button>
                     </CardContent>
                   </Card>

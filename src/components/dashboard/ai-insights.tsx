@@ -13,9 +13,10 @@ import { getAIInsights } from '@/app/actions';
 import { Skeleton } from '../ui/skeleton';
 import { useUser } from '@/context/user-context';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 export default function AiInsights() {
-  const { user, upgradeToPro } = useUser();
+  const { user } = useUser();
   const [insights, setInsights] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -51,7 +52,9 @@ export default function AiInsights() {
               Upgrade to Pro to get personalized financial advice and trend
               analysis.
             </p>
-            <Button onClick={upgradeToPro}>Upgrade to Pro</Button>
+            <Button asChild>
+              <Link href="/dashboard/upgrade">Upgrade to Pro</Link>
+            </Button>
           </div>
         ) : loading ? (
           <div className="space-y-3">
