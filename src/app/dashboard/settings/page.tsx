@@ -1,4 +1,5 @@
-'use client';
+// 'use client';
+"use client";
 
 import * as React from 'react';
 import {
@@ -155,7 +156,7 @@ export default function SettingsPage() {
               <Select defaultValue="en">
                 <SelectTrigger>
                   <SelectValue placeholder="Select a language" />
-                </Trigger>
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="en">English</SelectItem>
                   <SelectItem value="hi">Hindi</SelectItem>

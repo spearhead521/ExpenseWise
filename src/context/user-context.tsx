@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 interface User {
   name: string;
@@ -19,11 +18,10 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar-1');
   const [user, setUser] = useState<User>({
     name: '',
     email: '',
-    avatar: userAvatar?.imageUrl || '',
+    avatar: '',
     isPro: false,
   });
 
