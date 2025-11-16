@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    // This allows all cross-origin requests in development.
+    // In a real production app, you'd want to be more specific.
+    allowedDevOrigins: ['*'],
+  },
 };
 
 export default nextConfig;
