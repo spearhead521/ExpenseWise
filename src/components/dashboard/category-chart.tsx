@@ -2,7 +2,7 @@
 
 import { TrendingUp } from 'lucide-react';
 import {
-  Donut,
+  DonutChart,
   type DonutChartProps,
 } from '@tremor/react';
 
@@ -54,7 +54,7 @@ export default function CategoryChart() {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[300px]"
         >
-          <Donut
+          <DonutChart
             data={chartData}
             category="value"
             index="name"
