@@ -16,7 +16,7 @@ import { Card, CardContent } from '@/components/ui/card';
 export default function DashboardPage() {
   const { transactions } = useTransactions();
   const { budget } = useBudget();
-  const [isBudgetDialogOpen, setIsBudgetDialogOpen] = useState(false);
+  const [isMonthlyBudgetDialogOpen, setIsMonthlyBudgetDialogOpen] = useState(false);
 
   const totalIncome = transactions
     .filter((t) => t.type === 'income')
@@ -66,7 +66,7 @@ export default function DashboardPage() {
                 <p className="mb-4 text-muted-foreground">
                   Set a monthly budget to track your spending.
                 </p>
-                <Button onClick={() => setIsBudgetDialogOpen(true)}>
+                <Button onClick={() => setIsMonthlyBudgetDialogOpen(true)}>
                   <PlusCircle className="mr-2" />
                   Set Monthly Budget
                 </Button>
@@ -81,8 +81,8 @@ export default function DashboardPage() {
         </div>
       </div>
       <AddBudgetDialog
-        isOpen={isBudgetDialogOpen}
-        onOpenChange={setIsBudgetDialogOpen}
+        isOpen={isMonthlyBudgetDialogOpen}
+        onOpenChange={setIsMonthlyBudgetDialogOpen}
         type="monthly"
       />
     </>
