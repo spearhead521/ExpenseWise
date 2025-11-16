@@ -12,8 +12,33 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/icons';
+import { auth } from '@/lib/firebase';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useUser } from '@/context/user-context';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+  const { setUser } = useUser();
+  const router = useRouter();
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { user } = result;
+      setUser({
+        name: user.displayName || '',
+        email: user.email || '',
+        avatar: user.photoURL || '',
+        isPro: false, // Default to non-pro on new login
+      });
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('Error during Google login:', error);
+      alert('Failed to login with Google. Please try again.');
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="mx-auto w-full max-w-sm">
@@ -51,7 +76,11 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" asChild>
               <Link href="/dashboard">Login</Link>
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => alert('Google Login coming soon!')}>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={handleGoogleLogin}
+            >
               Login with Google
             </Button>
           </div>
