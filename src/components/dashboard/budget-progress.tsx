@@ -8,24 +8,32 @@ import {
 } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 
-export default function BudgetProgress() {
-  const budget = 5000;
-  const spent = 2870.5;
+export default function BudgetProgress({
+  budget = 5000,
+  spent = 2870.5,
+  showDescription = true,
+}: {
+  budget?: number;
+  spent?: number;
+  showDescription?: boolean;
+}) {
   const progress = (spent / budget) * 100;
   const remaining = budget - spent;
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Monthly Budget</CardTitle>
-        <CardDescription>
-          You&apos;ve spent{' '}
-          <span className="font-semibold text-primary">
-            {progress.toFixed(0)}%
-          </span>{' '}
-          of your budget this month.
-        </CardDescription>
-      </CardHeader>
+  const cardContent = (
+    <>
+      {showDescription && (
+        <CardHeader>
+          <CardTitle>Monthly Budget</CardTitle>
+          <CardDescription>
+            You&apos;ve spent{' '}
+            <span className="font-semibold text-primary">
+              {progress.toFixed(0)}%
+            </span>{' '}
+            of your budget this month.
+          </CardDescription>
+        </CardHeader>
+      )}
       <CardContent>
         <Progress value={progress} aria-label={`${progress.toFixed(0)}% spent`} />
       </CardContent>
@@ -35,6 +43,8 @@ export default function BudgetProgress() {
           Remaining: ${remaining.toLocaleString()}
         </span>
       </CardFooter>
-    </Card>
+    </>
   );
+
+  return showDescription ? <Card>{cardContent}</Card> : cardContent;
 }

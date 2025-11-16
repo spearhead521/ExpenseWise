@@ -34,7 +34,7 @@ export default function RecentTransactions() {
           </CardDescription>
         </div>
         <Button asChild size="sm" className="ml-auto gap-1">
-          <Link href="#">
+          <Link href="/dashboard/transactions">
             View All
             <ArrowUpRight className="h-4 w-4" />
           </Link>
@@ -61,8 +61,8 @@ export default function RecentTransactions() {
                   className={cn(
                     'text-right font-medium',
                     transaction.type === 'income'
-                      ? 'text-green-500'
-                      : 'text-red-500'
+                      ? 'text-green-600'
+                      : 'text-red-600'
                   )}
                 >
                   {transaction.type === 'income' ? '+' : '-'}
