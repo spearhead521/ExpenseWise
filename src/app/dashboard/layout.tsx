@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Bell } from 'lucide-react';
 
@@ -15,12 +16,14 @@ import { UserNav } from '@/components/user-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Icons } from '@/components/icons';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useUser } from '@/context/user-context';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { user, upgradeToPro } = useUser();
   return (
     <div className="grid h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:flex md:flex-col">
@@ -34,27 +37,27 @@ export default function DashboardLayout({
             <span className="sr-only">Toggle notifications</span>
           </Button>
         </div>
-        <div className="relative flex-1">
-          <ScrollArea className="h-full py-4">
-            <MainNav />
-          </ScrollArea>
-        </div>
-        <div className="mt-auto border-t p-4">
-          <Card>
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button size="sm" className="w-full">
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+        <ScrollArea className="flex-1 py-4">
+          <MainNav />
+        </ScrollArea>
+        {!user.isPro && (
+          <div className="mt-auto border-t p-4">
+            <Card>
+              <CardHeader className="p-2 pt-0 md:p-4">
+                <CardTitle>Upgrade to Pro</CardTitle>
+                <CardDescription>
+                  Unlock all features and get unlimited access to our support
+                  team.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
+                <Button size="sm" className="w-full" onClick={upgradeToPro}>
+                  Upgrade
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
       <div className="flex flex-col">
         <header className="flex h-14 shrink-0 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -82,22 +85,28 @@ export default function DashboardLayout({
               <ScrollArea className="flex-1 py-4">
                 <MainNav isMobile={true} />
               </ScrollArea>
-              <div className="mt-auto border-t p-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Upgrade to Pro</CardTitle>
-                    <CardDescription>
-                      Unlock all features and get unlimited access to our
-                      support team.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button size="sm" className="w-full">
-                      Upgrade
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
+              {!user.isPro && (
+                <div className="mt-auto border-t p-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Upgrade to Pro</CardTitle>
+                      <CardDescription>
+                        Unlock all features and get unlimited access to our
+                        support team.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button
+                        size="sm"
+                        className="w-full"
+                        onClick={upgradeToPro}
+                      >
+                        Upgrade
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
@@ -106,8 +115,8 @@ export default function DashboardLayout({
           <ThemeToggle />
           <UserNav />
         </header>
-        <main className="flex flex-1 flex-col gap-4 overflow-auto p-4 sm:px-6 sm:py-0 md:gap-8">
-          {children}
+        <main className="flex-1 overflow-auto p-4 sm:px-6 sm:py-0 md:gap-8">
+          <div className="h-full py-6">{children}</div>
         </main>
       </div>
     </div>

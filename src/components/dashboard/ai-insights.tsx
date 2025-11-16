@@ -8,23 +8,28 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Lightbulb } from 'lucide-react';
+import { Lightbulb, Sparkles } from 'lucide-react';
 import { getAIInsights } from '@/app/actions';
 import { Skeleton } from '../ui/skeleton';
+import { useUser } from '@/context/user-context';
+import { Button } from '../ui/button';
 
 export default function AiInsights() {
+  const { user, upgradeToPro } = useUser();
   const [insights, setInsights] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchInsights() {
-      setLoading(true);
-      const result = await getAIInsights();
-      setInsights(result);
-      setLoading(false);
+      if (user.isPro) {
+        setLoading(true);
+        const result = await getAIInsights();
+        setInsights(result);
+        setLoading(false);
+      }
     }
     fetchInsights();
-  }, []);
+  }, [user.isPro]);
 
   return (
     <Card>
@@ -36,7 +41,19 @@ export default function AiInsights() {
         <CardDescription>AI-powered analysis of your spending</CardDescription>
       </CardHeader>
       <CardContent>
-        {loading ? (
+        {!user.isPro ? (
+          <div className="flex flex-col items-center justify-center space-y-4 rounded-lg border-2 border-dashed bg-muted/50 p-8 text-center">
+            <div className="rounded-full bg-primary/20 p-3">
+              <Sparkles className="h-6 w-6 text-primary" />
+            </div>
+            <p className="font-semibold">Unlock Advanced AI Insights</p>
+            <p className="text-sm text-muted-foreground">
+              Upgrade to Pro to get personalized financial advice and trend
+              analysis.
+            </p>
+            <Button onClick={upgradeToPro}>Upgrade to Pro</Button>
+          </div>
+        ) : loading ? (
           <div className="space-y-3">
             <Skeleton className="h-5 w-full" />
             <Skeleton className="h-5 w-4/5" />

@@ -7,11 +7,13 @@ interface User {
   name: string;
   email: string;
   avatar: string;
+  isPro: boolean;
 }
 
 interface UserContextType {
   user: User;
   setUser: (user: User) => void;
+  upgradeToPro: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -22,10 +24,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     name: 'shadcn',
     email: 'm@example.com',
     avatar: userAvatar?.imageUrl || '',
+    isPro: false,
   });
 
+  const upgradeToPro = () => {
+    setUser((prevUser) => ({ ...prevUser, isPro: true }));
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, upgradeToPro }}>
       {children}
     </UserContext.Provider>
   );
