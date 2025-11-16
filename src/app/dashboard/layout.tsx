@@ -106,8 +106,8 @@ export default function DashboardLayout({
           <ThemeToggle />
           <UserNav />
         </header>
-        <main className="flex-1 overflow-auto">
-          <div className="p-4 sm:p-6">{children}</div>
+        <main className="flex flex-1 flex-col gap-4 overflow-auto p-4 sm:px-6 sm:py-0 md:gap-8">
+          {children}
         </main>
       </div>
     </div>
