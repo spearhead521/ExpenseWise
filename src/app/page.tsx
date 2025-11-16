@@ -46,7 +46,7 @@ export default function LoginPage() {
           <Icons.logo className="mx-auto h-8 w-8" />
           <CardTitle className="text-2xl">Welcome to ExpenseWise</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Login or sign up to continue to your dashboard.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,6 +58,7 @@ export default function LoginPage() {
                 type="email"
                 placeholder="m@example.com"
                 required
+                disabled
               />
             </div>
             <div className="grid gap-2">
@@ -71,10 +72,10 @@ export default function LoginPage() {
                   Forgot your password?
                 </Link>
               </div>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" required disabled />
             </div>
-            <Button type="submit" className="w-full" asChild>
-              <Link href="/dashboard">Login</Link>
+            <Button type="submit" className="w-full" disabled>
+              Login (Coming Soon)
             </Button>
             <Button
               variant="outline"
