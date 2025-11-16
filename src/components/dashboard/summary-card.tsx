@@ -30,7 +30,7 @@ export default function SummaryCard({
           {isCurrency && (
             <>
               {isNegative && '-'}
-              ${Math.abs(value).toLocaleString()}
+              ₹{Math.abs(value).toLocaleString()}
             </>
           )}
           {!isCurrency && value.toLocaleString()}

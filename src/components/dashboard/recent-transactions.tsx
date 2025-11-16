@@ -66,7 +66,7 @@ export default function RecentTransactions() {
                   )}
                 >
                   {transaction.type === 'income' ? '+' : '-'}
-                  ${transaction.amount.toFixed(2)}
+                  ₹{transaction.amount.toFixed(2)}
                 </TableCell>
               </TableRow>
             ))}

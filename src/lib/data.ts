@@ -29,7 +29,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn1',
     title: 'Monthly Salary',
-    amount: 5000,
+    amount: 150000,
     type: 'income',
     category: 'Salary',
     date: '2024-07-01T10:00:00Z',
@@ -37,8 +37,8 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: 'txn2',
-    title: 'Grocery Shopping',
-    amount: 75.5,
+    title: 'Zomato Order',
+    amount: 750.5,
     type: 'expense',
     category: 'Food',
     date: '2024-07-02T14:30:00Z',
@@ -46,8 +46,8 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: 'txn3',
-    title: 'Train Ticket',
-    amount: 25,
+    title: 'Auto Rickshaw',
+    amount: 125,
     type: 'expense',
     category: 'Transport',
     date: '2024-07-03T08:00:00Z',
@@ -56,7 +56,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn4',
     title: 'Movie Night',
-    amount: 40,
+    amount: 850,
     type: 'expense',
     category: 'Entertainment',
     date: '2024-07-05T20:00:00Z',
@@ -65,7 +65,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn5',
     title: 'Electricity Bill',
-    amount: 120,
+    amount: 2500,
     type: 'expense',
     category: 'Bills',
     date: '2024-07-06T11:00:00Z',
@@ -74,7 +74,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn6',
     title: 'Lunch with Friends',
-    amount: 55.2,
+    amount: 1200,
     type: 'expense',
     category: 'Food',
     date: '2024-07-08T13:00:00Z',
@@ -82,8 +82,8 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: 'txn7',
-    title: 'New T-shirt',
-    amount: 35,
+    title: 'Myntra Shopping',
+    amount: 3500,
     type: 'expense',
     category: 'Shopping',
     date: '2024-07-10T16:45:00Z',
@@ -92,7 +92,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn8',
     title: 'Freelance Gig',
-    amount: 300,
+    amount: 25000,
     type: 'income',
     category: 'Salary',
     date: '2024-07-12T18:00:00Z',
@@ -101,7 +101,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     {
     id: 'txn9',
     title: 'Pharmacy',
-    amount: 22.75,
+    amount: 550,
     type: 'expense',
     category: 'Health',
     date: '2024-07-15T09:20:00Z',
@@ -110,7 +110,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'txn10',
     title: 'Internet Bill',
-    amount: 60,
+    amount: 1200,
     type: 'expense',
     category: 'Bills',
     date: '2024-06-15T10:00:00Z',

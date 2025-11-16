@@ -52,7 +52,7 @@ export async function getAIInsights() {
     }, {} as Record<string, number>);
 
     const transactionHistory = formatTransactionHistory(MOCK_TRANSACTIONS);
-    const monthlyBudget = 5000;
+    const monthlyBudget = 50000;
 
     const insights = await getSmartExpenseInsights({
       transactionHistory,

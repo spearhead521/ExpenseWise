@@ -11,10 +11,10 @@ import { MOCK_CATEGORIES } from '@/lib/data';
 import { PlusCircle } from 'lucide-react';
 
 const categoryBudgets = [
-  { category: 'Food', budget: 500, spent: 320.5 },
-  { category: 'Shopping', budget: 400, spent: 450.2 },
-  { category: 'Transport', budget: 150, spent: 85 },
-  { category: 'Entertainment', budget: 200, spent: 150 },
+  { category: 'Food', budget: 15000, spent: 10250 },
+  { category: 'Shopping', budget: 10000, spent: 11500 },
+  { category: 'Transport', budget: 5000, spent: 3500 },
+  { category: 'Entertainment', budget: 5000, spent: 4000 },
 ];
 
 export default function BudgetsPage() {
@@ -48,7 +48,7 @@ export default function BudgetsPage() {
               <CardHeader>
                 <CardTitle>{b.category}</CardTitle>
                 <CardDescription>
-                  ${b.spent.toLocaleString()} / ${b.budget.toLocaleString()}
+                  ₹{b.spent.toLocaleString()} / ₹{b.budget.toLocaleString()}
                 </CardDescription>
               </CardHeader>
               <CardContent>

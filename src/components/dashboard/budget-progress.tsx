@@ -9,8 +9,8 @@ import {
 import { Progress } from '@/components/ui/progress';
 
 export default function BudgetProgress({
-  budget = 5000,
-  spent = 2870.5,
+  budget = 50000,
+  spent = 28750,
   showDescription = true,
 }: {
   budget?: number;
@@ -38,9 +38,9 @@ export default function BudgetProgress({
         <Progress value={progress} aria-label={`${progress.toFixed(0)}% spent`} />
       </CardContent>
       <CardFooter className="flex justify-between text-sm">
-        <span>Spent: ${spent.toLocaleString()}</span>
+        <span>Spent: ₹{spent.toLocaleString()}</span>
         <span className="text-muted-foreground">
-          Remaining: ${remaining.toLocaleString()}
+          Remaining: ₹{remaining.toLocaleString()}
         </span>
       </CardFooter>
     </>

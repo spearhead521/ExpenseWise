@@ -127,11 +127,12 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="currency">Currency</Label>
-              <Select defaultValue="usd">
+              <Select defaultValue="inr">
                 <SelectTrigger>
                   <SelectValue placeholder="Select a currency" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="inr">INR (₹)</SelectItem>
                   <SelectItem value="usd">USD ($)</SelectItem>
                   <SelectItem value="eur">EUR (€)</SelectItem>
                   <SelectItem value="gbp">GBP (£)</SelectItem>
@@ -146,8 +147,8 @@ export default function SettingsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="en">English</SelectItem>
-                  <SelectItem value="es">Spanish</SelectItem>
-                  <SelectItem value="fr">French</SelectItem>
+                  <SelectItem value="hi">Hindi</SelectItem>
+                  <SelectItem value="bn">Bengali</SelectItem>
                 </SelectContent>
               </Select>
             </div>

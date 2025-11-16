@@ -101,7 +101,7 @@ export default function TransactionsPage() {
                           : 'text-red-600'
                       )}
                     >
-                      {transaction.type === 'income' ? '+' : '-'}$
+                      {transaction.type === 'income' ? '+' : '-'}₹
                       {transaction.amount.toFixed(2)}
                     </TableCell>
                   </TableRow>
@@ -145,7 +145,7 @@ export default function TransactionsPage() {
                       {format(new Date(transaction.date), 'dd MMM, yyyy')}
                     </TableCell>
                     <TableCell className="text-right font-medium text-green-600">
-                      +${transaction.amount.toFixed(2)}
+                      +₹{transaction.amount.toFixed(2)}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -188,7 +188,7 @@ export default function TransactionsPage() {
                       {format(new Date(transaction.date), 'dd MMM, yyyy')}
                     </TableCell>
                     <TableCell className="text-right font-medium text-red-600">
-                      -${transaction.amount.toFixed(2)}
+                      -₹{transaction.amount.toFixed(2)}
                     </TableCell>
                   </TableRow>
                 ))}

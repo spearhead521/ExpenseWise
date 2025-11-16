@@ -31,13 +31,13 @@ import {
 } from 'recharts';
 
 const monthlyData = [
-  { name: 'Jan', income: 4000, expense: 2400 },
-  { name: 'Feb', income: 3000, expense: 1398 },
-  { name: 'Mar', income: 5000, expense: 9800 },
-  { name: 'Apr', income: 2780, expense: 3908 },
-  { name: 'May', income: 1890, expense: 4800 },
-  { name: 'Jun', income: 2390, expense: 3800 },
-  { name: 'Jul', income: 3490, expense: 4300 },
+  { name: 'Jan', income: 400000, expense: 240000 },
+  { name: 'Feb', income: 300000, expense: 139800 },
+  { name: 'Mar', income: 500000, expense: 380000 },
+  { name: 'Apr', income: 278000, expense: 390800 },
+  { name: 'May', income: 189000, expense: 480000 },
+  { name: 'Jun', income: 239000, expense: 380000 },
+  { name: 'Jul', income: 349000, expense: 230000 },
 ];
 
 export default function ReportsPage() {
@@ -162,7 +162,7 @@ export default function ReportsPage() {
                     <TableRow key={category}>
                       <TableCell>{category}</TableCell>
                       <TableCell className="text-right">
-                        ${amount.toFixed(2)}
+                        ₹{amount.toFixed(2)}
                       </TableCell>
                     </TableRow>
                   ))}
