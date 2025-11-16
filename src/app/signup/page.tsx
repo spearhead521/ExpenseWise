@@ -20,11 +20,13 @@ export default function SignupPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser, user } = useUser();
+  const { setUser } = useUser();
   const router = useRouter();
 
   const handleSignup = () => {
-    setUser({ ...user, name, email });
+    // When signing up, we don't have an avatar URL, so we set it to an empty string.
+    // The UI will use initials as a fallback.
+    setUser({ name, email, avatar: '', isPro: false });
     router.push('/dashboard');
   };
 
