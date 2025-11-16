@@ -22,9 +22,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+    <div className="grid h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:flex md:flex-col">
-        <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+        <div className="flex h-14 shrink-0 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <Icons.logo className="h-6 w-6" />
             <span className="">ExpenseWise</span>
@@ -34,10 +34,12 @@ export default function DashboardLayout({
             <span className="sr-only">Toggle notifications</span>
           </Button>
         </div>
-        <ScrollArea className="flex-1">
-          <MainNav />
-        </ScrollArea>
-        <div className="mt-auto p-4">
+        <div className="relative flex-1">
+          <ScrollArea className="h-full py-4">
+            <MainNav />
+          </ScrollArea>
+        </div>
+        <div className="mt-auto border-t p-4">
           <Card>
             <CardHeader className="p-2 pt-0 md:p-4">
               <CardTitle>Upgrade to Pro</CardTitle>
@@ -77,7 +79,7 @@ export default function DashboardLayout({
                   <span className="">ExpenseWise</span>
                 </Link>
               </div>
-              <ScrollArea className="flex-1">
+              <ScrollArea className="flex-1 py-4">
                 <MainNav isMobile={true} />
               </ScrollArea>
               <div className="mt-auto border-t p-4">
@@ -104,7 +106,7 @@ export default function DashboardLayout({
           <ThemeToggle />
           <UserNav />
         </header>
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-auto">
           <div className="p-4 sm:p-6">{children}</div>
         </main>
       </div>
