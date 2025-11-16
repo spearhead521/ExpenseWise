@@ -20,19 +20,39 @@ import {
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Pen } from 'lucide-react';
 
 export default function SettingsPage() {
   const { toast } = useToast();
   const [name, setName] = React.useState('shadcn');
   const [email, setEmail] = React.useState('m@example.com');
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const userAvatar = PlaceHolderImages.find(
+    (img) => img.id === 'user-avatar-1'
+  );
+  const [avatarSrc, setAvatarSrc] = React.useState(userAvatar?.imageUrl);
 
   const handleProfileUpdate = () => {
     // Here you would typically make an API call to update the user's profile
-    console.log('Profile updated:', { name, email });
+    console.log('Profile updated:', { name, email, avatarSrc });
     toast({
       title: 'Profile Updated',
       description: 'Your personal information has been successfully updated.',
     });
+  };
+
+  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setAvatarSrc(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -50,13 +70,39 @@ export default function SettingsPage() {
             <CardDescription>Update your personal information.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Avatar className="h-20 w-20">
+                  <AvatarImage src={avatarSrc} alt="User avatar" />
+                  <AvatarFallback>SC</AvatarFallback>
+                </Avatar>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute bottom-0 right-0 h-8 w-8 rounded-full"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Pen className="h-4 w-4" />
+                  <span className="sr-only">Change profile picture</span>
+                </Button>
+                <Input
+                  ref={fileInputRef}
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                />
+              </div>
+              <div className="flex-1 space-y-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name</Label>
+                  <Input
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -67,6 +113,7 @@ export default function SettingsPage() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
             <Button onClick={handleProfileUpdate}>Update Profile</Button>
           </CardContent>
         </Card>
