@@ -21,23 +21,20 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Pen } from 'lucide-react';
+import { useUser } from '@/context/user-context';
 
 export default function SettingsPage() {
   const { toast } = useToast();
-  const [name, setName] = React.useState('shadcn');
-  const [email, setEmail] = React.useState('m@example.com');
+  const { user, setUser } = useUser();
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-  const userAvatar = PlaceHolderImages.find(
-    (img) => img.id === 'user-avatar-1'
-  );
-  const [avatarSrc, setAvatarSrc] = React.useState(userAvatar?.imageUrl);
+  const [name, setName] = React.useState(user.name);
+  const [email, setEmail] = React.useState(user.email);
+  const [avatarSrc, setAvatarSrc] = React.useState(user.avatar);
 
   const handleProfileUpdate = () => {
-    // Here you would typically make an API call to update the user's profile
-    console.log('Profile updated:', { name, email, avatarSrc });
+    setUser({ name, email, avatar: avatarSrc });
     toast({
       title: 'Profile Updated',
       description: 'Your personal information has been successfully updated.',
@@ -74,7 +71,12 @@ export default function SettingsPage() {
               <div className="relative">
                 <Avatar className="h-20 w-20">
                   <AvatarImage src={avatarSrc} alt="User avatar" />
-                  <AvatarFallback>SC</AvatarFallback>
+                  <AvatarFallback>
+                    {name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')}
+                  </AvatarFallback>
                 </Avatar>
                 <Button
                   variant="outline"
