@@ -1,3 +1,6 @@
+'use client';
+
+import * as React from 'react';
 import {
   Card,
   CardContent,
@@ -16,8 +19,22 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
+import { useToast } from '@/hooks/use-toast';
 
 export default function SettingsPage() {
+  const { toast } = useToast();
+  const [name, setName] = React.useState('shadcn');
+  const [email, setEmail] = React.useState('m@example.com');
+
+  const handleProfileUpdate = () => {
+    // Here you would typically make an API call to update the user's profile
+    console.log('Profile updated:', { name, email });
+    toast({
+      title: 'Profile Updated',
+      description: 'Your personal information has been successfully updated.',
+    });
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -35,13 +52,22 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
-              <Input id="name" defaultValue="shadcn" />
+              <Input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" defaultValue="m@example.com" />
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <Button>Update Profile</Button>
+            <Button onClick={handleProfileUpdate}>Update Profile</Button>
           </CardContent>
         </Card>
         <Card>
@@ -63,7 +89,7 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
-             <div className="space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="language">Language</Label>
               <Select defaultValue="en">
                 <SelectTrigger>
@@ -99,16 +125,16 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="push-notifications">Push Notifications</Label>
-                 <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Get real-time alerts on your devices.
                 </p>
               </div>
               <Switch id="push-notifications" />
             </div>
-             <Button>Update Notifications</Button>
+            <Button>Update Notifications</Button>
           </CardContent>
         </Card>
-         <Card>
+        <Card>
           <CardHeader>
             <CardTitle>Security</CardTitle>
             <CardDescription>Manage your account security.</CardDescription>
@@ -118,11 +144,11 @@ export default function SettingsPage() {
               <Label htmlFor="current-password">Current Password</Label>
               <Input id="current-password" type="password" />
             </div>
-             <div className="space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="new-password">New Password</Label>
               <Input id="new-password" type="password" />
             </div>
-             <div className="space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="confirm-password">Confirm New Password</Label>
               <Input id="confirm-password" type="password" />
             </div>
